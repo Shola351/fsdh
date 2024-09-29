@@ -1,0 +1,43 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://credit360webtest.fsdhgroup.com/#/');
+  await page.goto('https://credit360webtest.fsdhgroup.com/#/auth/login?returnUrl=%2Fdashboard');
+  await page.getByRole('textbox', { name: 'Username' }).click();
+  await page.getByRole('textbox', { name: 'Username' }).fill('rm_abj');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('testing');
+  await page.getByRole('button', { name: 'Log In' }).click();
+  await page.getByRole('link', { name: 'account_balance_wallet Credit' }).click();
+  await page.getByRole('link', { name: 'Credit Origination' }).click();
+  await page.getByRole('link', { name: 'Credit Appraisal' }).click();
+  await page.goto('https://credit360webtest.fsdhgroup.com/#/credit/appraisal/credit-appraisal');
+  await page.getByRole('row', { name: '20-09-2024 1411303528876' }).locator('p-dtradiobutton div').nth(2).click();
+  await page.getByRole('link', { name: 'Approval Memorandum' }).click();
+  await page.getByRole('button', { name: '+ Load Template' }).click();
+  await page.getByLabel('Document Template').selectOption('1003');
+  await page.getByRole('button', { name: 'Load Document' }).click();
+  await page.getByRole('link', { name: 'Application Information' }).click();
+  await page.getByRole('button', { name: 'add Add New' }).click();
+  await page.waitForTimeout(80000);
+
+  await page.getByLabel('Additional Comment').click();
+  await page.getByLabel('Additional Comment').fill('Testing');
+  await page.getByRole('button', { name: 'Save and Close' }).click();
+  await page.getByLabel('Terms').click();
+  await page.getByLabel('Terms').fill('Testing');
+  await page.getByRole('button', { name: 'Save and Close' }).click();
+  await page.getByRole('link', { name: 'Conditions' }).click();
+  await page.getByRole('combobox').selectOption('1179');
+  await page.getByRole('button', { name: 'add Add New' }).click();
+  await page.getByLabel('Condition').click();
+  await page.getByLabel('Condition').fill('Credit bureau must be uploaded');
+  await page.locator('#isSubsequent').check();
+  await page.locator('#timelineId').selectOption('4');
+  await page.getByRole('button', { name: 'Save', exact: true }).click();
+  await page.getByRole('link', { name: 'Application Information' }).click();
+  await page.getByRole('button', { name: ' Submit' }).first().click();
+  await page.locator('#comment-modal #comment').click();
+  await page.locator('#comment-modal #comment').fill('Approve');
+  await page.getByRole('button', { name: ' Save and Send' }).click();
+});

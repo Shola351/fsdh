@@ -1,0 +1,73 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://credit360webtest.fsdhgroup.com/#/auth/login?returnUrl=%2Fdashboard');
+  await page.getByRole('textbox', { name: 'Username' }).click();
+  await page.getByRole('textbox', { name: 'Username' }).fill('rm_abj');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('testing');
+  await page.getByRole('button', { name: 'Log In' }).click();
+  await page.getByRole('link', { name: 'account_balance_wallet Credit' }).click();
+  await page.getByRole('link', { name: 'Credit Origination' }).click();
+  await page.getByRole('link', { name: 'Start Credit Application' }).click();
+  await page.locator('#startLoanTypeId').selectOption({label:"Individual"});
+ 
+  
+  await page.getByRole('button', { name: 'Next' }).click();
+  // await page.waitForTimeout(80000);
+
+  await page.getByPlaceholder('Type in your search parameter ...').click();
+  await page.getByPlaceholder('Type in your search parameter ...').fill('009559');
+  // await page.waitForTimeout(80000);
+
+  await page.getByRole('row', { name: '009559 AFRICAN TRUCKERS' }).locator('div').nth(2).click();
+  await page.getByRole('button', { name: 'Upload Credit Bureau Report' }).click();
+  await page.getByRole('button', { name: 'check Proceed' }).click();
+  await page.getByLabel('Application Type').selectOption('1');
+  await page.getByRole('tab', { name: 'List of existing loans' }).click();
+  await page.getByRole('button', { name: 'New Loan Application' }).click();
+  await page.locator('#requireCollateralTypeId').selectOption('1');
+  await page.locator('#productClassId').selectOption('1');
+  await page.getByRole('button', { name: 'Add Facility' }).click();
+  await page.locator('#loanDetailReviewTypeId').selectOption('1');
+  await page.locator('#proposedProductId').selectOption('427');
+  await page.locator('#sectorId').selectOption('21');
+  await page.locator('#subSectorId').selectOption('385');
+  await page.locator('input[name="proposedTenor"]').click();
+  await page.locator('input[name="proposedTenor"]').fill('3');
+  await page.locator('#proposedAmount').click();
+  await page.locator('#proposedAmount').fill('15000000');
+  await page.getByRole('spinbutton').click();
+  await page.getByRole('spinbutton').fill('-6');
+  await page.locator('#currencyId').selectOption('1');
+  await page.locator('#repaymentScheduleId').selectOption('2');
+  await page.locator('#interestRepaymentId').selectOption('2');
+  await page.locator('#crmsFundingSourceId').selectOption('166');
+  await page.locator('#loanPurpose').click();
+  await page.locator('#loanPurpose').fill('Testing');
+  await page.locator('#operatingCasaAccountId').selectOption('461');
+  await page.getByRole('button', { name: 'Add Facility' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('button', { name: 'Save and Continue' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('cell', { name: 'SHORT TERM LOAN' }).click();
+  await page.getByRole('button', { name: 'Checklist' }).click();
+  await page.getByRole('link', { name: 'Environmental and Social Risk' }).click();
+  await page.locator('[id="\\30 "]').first().check();
+  await page.getByRole('row', { name: 'Are there vulnerable workers' }).getByLabel('Yes').check();
+  await page.getByRole('row', { name: 'Does the customers operations produce more than 25,000 tonnes of Greenhouse Gas' }).getByLabel('No').check();
+  await page.locator('[id="\\32 8"]').nth(1).check();
+  await page.locator('#page-preloader').click();
+  await page.getByRole('button', { name: 'Save ESGRating' }).click();
+  await page.getByRole('button', { name: 'Checklist' }).click();
+  await page.getByRole('link', { name: 'Green Loan Identification' }).click();
+  await page.getByRole('row', { name: 'Does the transaction involve procurement and replacement of obsolete machinery' }).getByLabel('No').check();
+  await page.getByRole('row', { name: 'Does the transaction involve the development of a cold storage system, silos or' }).getByLabel('Yes').check();
+  await page.getByRole('row', { name: 'Does this transaction involve' }).getByLabel('Yes').check();
+  await page.getByRole('row', { name: 'Does the transaction involve the application of renewable energy ? Yes No' }).getByLabel('Yes').check();
+  await page.getByRole('button', { name: 'Show Summary' }).click();
+  await page.getByRole('button', { name: 'Save Green Rating' }).click();
+  await page.getByRole('button', { name: 'Next' }).click();
+});
